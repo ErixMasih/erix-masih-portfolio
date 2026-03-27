@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Erix Masih — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black:#000;--deep:#020510;--navy:#060d2e;
+      --navy-mid:#0d1b6e;--glow:#1a2fff;--soft:#3d6eff;
+      --pale:#6e92ff;--white:#eef0ff;--muted:#8892b0;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;overflow-x:hidden;cursor:none;}
+
+    /* CURSOR */
+    .cursor{position:fixed;top:0;left:0;width:10px;height:10px;background:var(--soft);border-radius:50%;pointer-events:none;z-index:9999;box-shadow:0 0 14px var(--soft),0 0 28px rgba(61,110,255,.4);}
+    .cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border:1px solid rgba(61,110,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transition:width .3s,height .3s,opacity .3s;}
+
+    /* BG */
+    .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(26,47,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(26,47,255,.035) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;}
+    .orb-1{width:600px;height:600px;background:rgba(13,27,110,.35);top:-150px;right:-150px;animation:drift 18s ease-in-out infinite;}
+    .orb-2{width:450px;height:450px;background:rgba(6,13,46,.5);bottom:-100px;left:-100px;animation:drift 22s 6s ease-in-out infinite reverse;}
+    .orb-3{width:280px;height:280px;background:rgba(26,47,255,.12);top:45%;left:40%;animation:drift 14s 3s ease-in-out infinite;}
+    @keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.06);}66%{transform:translate(-30px,40px) scale(.94);}}
+
+    /* NAVBAR */
+    nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 64px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.65);backdrop-filter:blur(28px);border-bottom:1px solid rgba(26,47,255,.12);box-shadow:0 1px 60px rgba(13,27,110,.25);}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;letter-spacing:3px;color:var(--white);text-decoration:none;}
+    .nav-logo em{color:var(--soft);font-style:normal;}
+    .nav-links{display:flex;gap:4px;list-style:none;}
+    .nav-links a{font-family:'Jost',sans-serif;font-size:.7rem;font-weight:400;letter-spacing:3px;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:8px 20px;position:relative;display:inline-block;transition:color .4s ease;}
+    .nav-links a::after{content:'';position:absolute;bottom:2px;left:20px;width:calc(100% - 40px);height:1px;background:linear-gradient(90deg,var(--glow),var(--soft));box-shadow:0 0 8px var(--soft);transform:scaleX(0);transform-origin:center;transition:transform .5s cubic-bezier(.77,0,.175,1);}
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+    .nav-links a.active{color:var(--pale);}
+    .nav-cta{border:1px solid rgba(61,110,255,.35)!important;color:var(--pale)!important;transition:all .4s ease!important;}
+    .nav-cta:hover{background:rgba(26,47,255,.1);border-color:var(--soft)!important;box-shadow:0 0 24px rgba(61,110,255,.25);color:var(--white)!important;}
+    .nav-cta::after{display:none!important;}
+
+    /* HERO */
+    #home{min-height:100vh;display:flex;align-items:center;padding:100px 64px 60px;position:relative;z-index:1;}
+    .hero-container{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+
+    .hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:.65rem;letter-spacing:5px;color:var(--soft);margin-bottom:22px;opacity:0;animation:riseIn .9s .2s forwards;}
+    .hero-eyebrow::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--glow),var(--soft));box-shadow:0 0 6px var(--soft);}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6.5vw,5.6rem);font-weight:700;line-height:1.0;margin-bottom:10px;opacity:0;animation:riseIn .9s .4s forwards;}
+    .hero-name .first{display:block;color:var(--white);}
+    .hero-name .last{display:block;background:linear-gradient(135deg,var(--pale) 0%,var(--soft) 50%,var(--glow) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-divider{width:0;height:1px;background:linear-gradient(90deg,var(--glow),transparent);margin:22px 0;animation:expandLine 1.2s .9s forwards;}
+    @keyframes expandLine{to{width:220px;}}
+    .hero-role{font-size:1.1rem;font-weight:300;letter-spacing:2px;color:var(--muted);margin-bottom:28px;opacity:0;animation:riseIn .9s .7s forwards;}
+    .hero-role .tw{color:var(--pale);font-weight:500;border-right:2px solid var(--soft);padding-right:3px;animation:caret .85s step-end infinite;}
+    @keyframes caret{50%{border-color:transparent;}}
+    .hero-bio{font-size:.95rem;line-height:1.9;color:var(--muted);max-width:460px;margin-bottom:44px;opacity:0;animation:riseIn .9s .9s forwards;}
+    .hero-bio strong{color:var(--pale);font-weight:500;}
+    .hero-btns{display:flex;gap:18px;opacity:0;animation:riseIn .9s 1.1s forwards;}
+
+    .btn-fill{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;padding:15px 38px;background:linear-gradient(135deg,var(--glow),var(--soft));color:var(--white);border:none;text-decoration:none;display:inline-block;position:relative;overflow:hidden;box-shadow:0 4px 30px rgba(26,47,255,.35);transition:box-shadow .4s,transform .3s;}
+    .btn-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--soft),var(--pale));opacity:0;transition:opacity .4s;}
+    .btn-fill:hover{transform:translateY(-3px);box-shadow:0 10px 50px rgba(26,47,255,.5);}
+    .btn-fill:hover::before{opacity:1;}
+    .btn-fill span{position:relative;z-index:1;}
+    .btn-ghost{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;padding:14px 38px;background:transparent;color:var(--pale);border:1px solid rgba(61,110,255,.35);text-decoration:none;display:inline-block;transition:all .4s ease;}
+    .btn-ghost:hover{border-color:var(--soft);background:rgba(26,47,255,.07);color:var(--white);box-shadow:0 0 30px rgba(26,47,255,.2);transform:translateY(-3px);}
+
+    /* PHOTO */
+    .hero-photo-wrap{display:flex;justify-content:center;align-items:center;position:relative;opacity:0;animation:riseIn 1.1s .5s forwards;}
+    .photo-frame{position:relative;width:340px;height:420px;}
+    .photo-glow{position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(26,47,255,.18) 0%,transparent 70%);animation:pulseGlow 4s ease-in-out infinite;}
+    @keyframes pulseGlow{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+    .photo-placeholder{width:100%;height:100%;background:linear-gradient(145deg,#060d2e 0%,#0d1b6e 60%,#03050f 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(26,47,255,.2);}
+    .photo-placeholder::before{content:'';position:absolute;width:180px;height:180px;background:rgba(26,47,255,.1);border-radius:50%;top:60px;}
+    .avatar-emoji{font-size:96px;z-index:1;filter:drop-shadow(0 0 20px rgba(61,110,255,.5));}
+    .photo-label{font-size:.55rem;letter-spacing:4px;color:rgba(110,146,255,.5);margin-top:18px;z-index:1;}
+    .photo-img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.08) saturate(.9);transition:filter .5s;}
+    .photo-img:hover{filter:contrast(1.1) saturate(1.1) brightness(1.05);}
+    .flow-line{position:absolute;background:linear-gradient(var(--soft),transparent);width:1px;opacity:.5;}
+    .flow-line.t{top:0;left:30px;height:60px;animation:flowV 3s 0s ease-in-out infinite;}
+    .flow-line.r{top:30px;right:0;height:40px;animation:flowV 3s 1s ease-in-out infinite;}
+    .flow-line.b{bottom:0;right:30px;height:60px;transform:rotate(180deg);animation:flowV 3s 2s ease-in-out infinite;}
+    .flow-line.l{bottom:30px;left:0;height:40px;transform:rotate(180deg);animation:flowV 3s .5s ease-in-out infinite;}
+    @keyframes flowV{0%{opacity:0;transform:scaleY(0);transform-origin:top;}40%{opacity:.6;transform:scaleY(1);transform-origin:top;}60%{opacity:.6;transform:scaleY(1);transform-origin:bottom;}100%{opacity:0;transform:scaleY(0);transform-origin:bottom;}}
+    .float-card{position:absolute;background:rgba(2,5,16,.9);border:1px solid rgba(26,47,255,.25);backdrop-filter:blur(12px);padding:14px 22px;box-shadow:0 8px 32px rgba(13,27,110,.4);}
+    .float-card.a{left:-60px;bottom:70px;animation:floatY 5s ease-in-out infinite;}
+    .float-card.b{right:-50px;top:90px;animation:floatY 5s 2.5s ease-in-out infinite;}
+    @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+    .card-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--pale);display:block;line-height:1;}
+    .card-lbl{font-size:.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+
+    /* SCROLL CUE */
+    .scroll-cue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:riseIn 1s 2s forwards;}
+    .scroll-cue span{font-size:.5rem;letter-spacing:4px;color:rgba(110,146,255,.4);}
+    .scroll-track{width:1px;height:52px;background:rgba(26,47,255,.15);position:relative;overflow:hidden;}
+    .scroll-dot{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:3px;height:12px;border-radius:2px;background:linear-gradient(var(--soft),transparent);animation:slideDown 2s ease-in-out infinite;}
+    @keyframes slideDown{0%{top:-6px;opacity:0;}30%,70%{opacity:1;}100%{top:100%;opacity:0;}}
+
+    /* SECTIONS */
+    section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 64px;position:relative;z-index:1;}
+    .sw{max-width:960px;width:100%;}
+    .eyebrow{font-size:.6rem;letter-spacing:5px;color:var(--soft);display:block;margin-bottom:14px;}
+    .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:700;line-height:1.1;margin-bottom:18px;background:linear-gradient(135deg,#fff 0%,var(--pale) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .s-line{width:60px;height:1px;background:linear-gradient(90deg,var(--glow),var(--soft));box-shadow:0 0 8px var(--soft);margin-bottom:44px;}
+
+    /* ABOUT */
+    #about .sw{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+    .about-text p{font-size:1rem;line-height:1.95;color:var(--muted);margin-bottom:18px;}
+    .about-text p strong{color:var(--pale);font-weight:500;}
+    .about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+    .a-tag{font-size:.6rem;letter-spacing:2px;padding:8px 18px;border:1px solid rgba(61,110,255,.25);color:var(--pale);transition:all .35s;}
+    .a-tag:hover{background:rgba(26,47,255,.08);border-color:var(--soft);box-shadow:0 0 16px rgba(61,110,255,.15);}
+    .info-row{display:flex;align-items:center;gap:16px;padding:18px 24px;border:1px solid rgba(26,47,255,.15);background:rgba(2,5,16,.5);margin-bottom:16px;transition:border-color .35s,box-shadow .35s;}
+    .info-row:hover{border-color:rgba(61,110,255,.4);box-shadow:0 0 24px rgba(13,27,110,.3);}
+    .info-icon{font-size:1.3rem;}
+    .info-label{font-size:.6rem;letter-spacing:2px;color:var(--muted);display:block;}
+    .info-val{font-size:.9rem;font-weight:500;color:var(--white);}
+
+    /* SKILLS */
+    #skills .sw{text-align:center;}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:8px;}
+    .sk-card{padding:28px 20px;text-align:center;border:1px solid rgba(26,47,255,.15);background:rgba(2,5,16,.5);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);}
+    .sk-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,47,255,.08),transparent);opacity:0;transition:opacity .4s;}
+    .sk-card:hover{transform:translateY(-6px);border-color:rgba(61,110,255,.4);box-shadow:0 12px 40px rgba(13,27,110,.4);}
+    .sk-card:hover::before{opacity:1;}
+    .sk-icon{font-size:2rem;display:block;margin-bottom:10px;}
+    .sk-name{font-size:.7rem;letter-spacing:3px;color:var(--pale);text-transform:uppercase;}
+    .sk-level{font-size:.55rem;letter-spacing:2px;color:var(--muted);margin-top:4px;display:block;}
+    .sk-bar{width:100%;height:2px;background:rgba(255,255,255,.06);margin-top:16px;border-radius:1px;overflow:hidden;}
+    .sk-fill{height:100%;background:linear-gradient(90deg,var(--glow),var(--soft));border-radius:1px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.23,1,.32,1);}
+
+    /* PROJECTS */
+    #projects .sw{text-align:center;}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:8px;}
+    .proj-card{padding:32px;text-align:left;border:1px solid rgba(26,47,255,.15);background:rgba(2,5,16,.5);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);}
+    .proj-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--glow),var(--soft));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.77,0,.175,1);}
+    .proj-card:hover{transform:translateY(-6px);border-color:rgba(61,110,255,.35);box-shadow:0 16px 48px rgba(13,27,110,.4);}
+    .proj-card:hover::after{transform:scaleX(1);}
+    .proj-tag{font-size:.55rem;letter-spacing:3px;color:var(--soft);margin-bottom:14px;display:block;}
+    .proj-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:10px;}
+    .proj-desc{font-size:.85rem;line-height:1.8;color:var(--muted);}
+    .proj-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+    .proj-chip{font-size:.55rem;letter-spacing:2px;padding:5px 12px;border:1px solid rgba(61,110,255,.2);color:var(--pale);}
+
+    /* CONTACT */
+    #contact .sw{text-align:center;}
+    .contact-email{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;letter-spacing:2px;background:linear-gradient(135deg,var(--white),var(--pale));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;display:inline-block;margin:16px 0 44px;transition:filter .4s;}
+    .contact-email:hover{filter:brightness(1.3);}
+    .socials{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+    .soc-btn{font-size:.6rem;letter-spacing:3px;padding:12px 28px;border:1px solid rgba(61,110,255,.25);color:var(--muted);text-decoration:none;transition:all .35s;}
+    .soc-btn:hover{color:var(--white);border-color:var(--soft);background:rgba(26,47,255,.07);box-shadow:0 0 20px rgba(26,47,255,.15);}
+
+    /* FOOTER */
+    footer{text-align:center;padding:32px 40px;border-top:1px solid rgba(26,47,255,.1);font-size:.6rem;letter-spacing:3px;color:var(--muted);position:relative;z-index:1;}
+    footer span{color:var(--pale);}
+
+    /* ANIMATIONS */
+    @keyframes riseIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+    .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      nav{padding:0 24px;}
+      .nav-links a{padding:8px 10px;font-size:.6rem;letter-spacing:1px;}
+      #home{padding:100px 24px 60px;}
+      .hero-container{grid-template-columns:1fr;gap:50px;}
+      .hero-photo-wrap{order:-1;}
+      .photo-frame{width:260px;height:320px;}
+      .float-card.a{left:-10px;}
+      .float-card.b{right:-10px;}
+      section{padding:100px 24px;}
+      #about .sw{grid-template-columns:1fr;gap:40px;}
+      .hero-btns{flex-wrap:wrap;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#home" class="nav-logo">Erix <em>Masih</em></a>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
+    <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="hero-container">
+    <div class="hero-text">
+      <p class="hero-eyebrow">PORTFOLIO · 2025</p>
+      <h1 class="hero-name">
+        <span class="first">Erix</span>
+        <span class="last">Masih.</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-role">I'm a <span class="tw" id="typed"></span></p>
+      <p class="hero-bio">
+        I build <strong>full-stack applications</strong>, craft <strong>visual stories through photography</strong>,
+        and create <strong>immersive game experiences</strong> in Unity.
+        Design meets code meets creativity — all in one place.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-fill"><span>VIEW MY WORK</span></a>
+        <a href="#contact" class="btn-ghost">GET IN TOUCH</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="photo-frame">
+        <div class="photo-glow"></div>
+        <!--
+          TO ADD YOUR PHOTO: Remove the photo-placeholder div below and uncomment this:
+        -->
+           <img src="erix.jpeg" alt="Erix Masih" class="photo-img">
+     
+        <div class="flow-line t"></div>
+        <div class="flow-line r"></div>
+        <div class="flow-line b"></div>
+        <div class="flow-line l"></div>
+      </div>
+      <div class="float-card a">
+        <span class="card-num">5+</span>
+        <span class="card-lbl">Years Creating</span>
+      </div>
+      <div class="float-card b">
+        <span class="card-num">30+</span>
+        <span class="card-lbl">Projects Built</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>SCROLL</span>
+    <div class="scroll-track"><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sw">
+    <div class="about-text">
+      <span class="eyebrow reveal">// WHO I AM</span>
+      <h2 class="s-title reveal">About Me</h2>
+      <div class="s-line reveal"></div>
+      <p class="reveal">
+        Hey, I'm <strong>Erix Masih</strong> — a multi-disciplinary creator passionate about building things
+        that look great and work beautifully. Whether it's a full-stack web app, a Unity game, or a
+        perfectly edited photograph, I bring the same energy to everything I make.
+      </p>
+      <p class="reveal">
+        I blend the logic of <strong>software engineering</strong> with the eye of an <strong>artist</strong>.
+        From Java backends to Photoshop compositions to cinematic video edits —
+        I love working across the full creative stack.
+      </p>
+      <div class="about-tags reveal">
+        <span class="a-tag">CHANDIGARH, IN</span>
+        <span class="a-tag">FULL STACK</span>
+        <span class="a-tag">GAME DEV</span>
+        <span class="a-tag">PHOTOGRAPHY</span>
+        <span class="a-tag">CREATIVE</span>
+      </div>
+    </div>
+    <div>
+      <div class="info-row reveal"><span class="info-icon">💻</span><div><span class="info-label">FOCUS</span><span class="info-val">Full Stack Development</span></div></div>
+      <div class="info-row reveal"><span class="info-icon">🎮</span><div><span class="info-label">PASSION</span><span class="info-val">Unity Game Development</span></div></div>
+      <div class="info-row reveal"><span class="info-icon">📷</span><div><span class="info-label">ART</span><span class="info-val">Photography & Video Editing</span></div></div>
+      <div class="info-row reveal"><span class="info-icon">🎨</span><div><span class="info-label">DESIGN</span><span class="info-val">Photoshop & Visual Design</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sw">
+    <span class="eyebrow reveal">// WHAT I USE</span>
+    <h2 class="s-title reveal">Skills</h2>
+    <div class="s-line reveal"></div>
+    <div class="skills-grid">
+      <div class="sk-card reveal" data-lvl=".90"><span class="sk-icon">☕</span><span class="sk-name">Java</span><span class="sk-level">Full Stack</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".85"><span class="sk-icon">🐍</span><span class="sk-name">Python</span><span class="sk-level">Backend / Scripts</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".88"><span class="sk-icon">🌐</span><span class="sk-name">Web Dev</span><span class="sk-level">HTML · CSS · JS</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".82"><span class="sk-icon">🎮</span><span class="sk-name">Unity</span><span class="sk-level">Game Development</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".92"><span class="sk-icon">🖼️</span><span class="sk-name">Photoshop</span><span class="sk-level">Photo Editing</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".88"><span class="sk-icon">📷</span><span class="sk-name">Photography</span><span class="sk-level">Visual Storytelling</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".84"><span class="sk-icon">🎬</span><span class="sk-name">Video Editing</span><span class="sk-level">Post Production</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+      <div class="sk-card reveal" data-lvl=".80"><span class="sk-icon">🗄️</span><span class="sk-name">Databases</span><span class="sk-level">SQL · NoSQL</span><div class="sk-bar"><div class="sk-fill"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sw" style="text-align:center;">
+    <span class="eyebrow reveal">// WHAT I'VE BUILT</span>
+    <h2 class="s-title reveal">Projects</h2>
+    <div class="s-line reveal" style="margin:0 auto 44px;"></div>
+    <div class="projects-grid">
+      <div class="proj-card reveal">
+        <span class="proj-tag">// FULL STACK · JAVA</span>
+        <h3 class="proj-title">Project Alpha</h3>
+        <p class="proj-desc">A full-stack web application built with Java backend — replace with your real project description.</p>
+        <div class="proj-stack"><span class="proj-chip">JAVA</span><span class="proj-chip">SPRING</span><span class="proj-chip">MYSQL</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <span class="proj-tag">// UNITY · C#</span>
+        <h3 class="proj-title">Game Project</h3>
+        <p class="proj-desc">An immersive Unity game experience — describe your game mechanics and what makes it unique.</p>
+        <div class="proj-stack"><span class="proj-chip">UNITY</span><span class="proj-chip">C#</span><span class="proj-chip">3D</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <span class="proj-tag">// PYTHON · AUTOMATION</span>
+        <h3 class="proj-title">Python Tool</h3>
+        <p class="proj-desc">A Python-powered tool or automation script — replace with your actual project details.</p>
+        <div class="proj-stack"><span class="proj-chip">PYTHON</span><span class="proj-chip">API</span><span class="proj-chip">DATA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sw" style="text-align:center;">
+    <span class="eyebrow reveal">// GET IN TOUCH</span>
+    <h2 class="s-title reveal">Let's Connect</h2>
+    <div class="s-line reveal" style="margin:0 auto 44px;"></div>
+    <p class="reveal" style="color:var(--muted);font-size:1rem;line-height:1.9;max-width:520px;margin:0 auto 12px;">
+      Got a project, collab, or just want to talk tech, photography, or games?<br>I'm always open to interesting conversations.
+    </p>
+<a href="mailto:erixmasih555@gmail.com" class="contact-email reveal">
+<div class="socials reveal">
+  <a href="https://github.com/ErixMasih" class="soc-btn" target="_blank">GITHUB</a>
+  <!-- <a href="https://www.linkedin.com/in/yourprofile" class="soc-btn" target="_blank">LINKEDIN</a> -->
+  <a href="https://www.instagram.com/logicswitherix" class="soc-btn" target="_blank">INSTAGRAM</a>
+  <a href="https://www.youtube.com/@ErixMasih1209" class="soc-btn" target="_blank">YOUTUBE</a>
+  <!-- <a href="https://www.behance.net/yourusername" class="soc-btn" target="_blank">BEHANCE</a> -->
+</div>
+  </div>
+</section>
+
+<footer><p>Designed &amp; Built by <span>Erix Masih</span> &nbsp;·&nbsp; 2025</p></footer>
+
+<script>
+  // CURSOR
+  const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`;});
+  (function a(){rx+=(mx-rx-19)*.13;ry+=(my-ry-19)*.13;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(a);})();
+  document.querySelectorAll('a,button,.sk-card,.proj-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='60px';ring.style.height='60px';ring.style.opacity='.3';});
+    el.addEventListener('mouseleave',()=>{ring.style.width='38px';ring.style.height='38px';ring.style.opacity='1';});
+  });
+
+  // TYPEWRITER
+  const roles=['Full Stack Developer','Python Engineer','Unity Game Dev','Photographer','Video Editor','Photoshop Artist'];
+  let ri=0,ci=0,del=false;
+  const tw=document.getElementById('typed');
+  function tick(){const w=roles[ri];if(!del){tw.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,1800);return;}}else{tw.textContent=w.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}setTimeout(tick,del?55:85);}
+  setTimeout(tick,1400);
+
+  // REVEAL ON SCROLL
+  const revs=document.querySelectorAll('.reveal');
+  const ro=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{
+          e.target.classList.add('visible');
+          const fill=e.target.querySelector('.sk-fill');
+          if(fill){const lvl=parseFloat(e.target.dataset.lvl)||1;fill.style.transform=`scaleX(${lvl})`;}
+        },i*70);
+      }
+    });
+  },{threshold:.12});
+  revs.forEach(el=>ro.observe(el));
+
+  // ACTIVE NAV
+  const secs=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',()=>{
+    let active='home';
+    secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)active=s.id;});
+    links.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+active&&!l.classList.contains('nav-cta'))l.classList.add('active');});
+  });
+</script>
+</body>
+</html>
