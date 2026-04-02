@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Erix Masih — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Jost:wght@200;300;400;500;600&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --black:#000;--deep:#020510;--navy:#060d2e;
@@ -15,11 +15,9 @@
     html{scroll-behavior:smooth;}
     body{background:var(--black);color:var(--white);font-family:'Jost',sans-serif;overflow-x:hidden;cursor:none;}
 
-    /* CURSOR */
     .cursor{position:fixed;top:0;left:0;width:10px;height:10px;background:var(--soft);border-radius:50%;pointer-events:none;z-index:9999;box-shadow:0 0 14px var(--soft),0 0 28px rgba(61,110,255,.4);}
     .cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border:1px solid rgba(61,110,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transition:width .3s,height .3s,opacity .3s;}
 
-    /* BG */
     .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(26,47,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(26,47,255,.035) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
     .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;}
     .orb-1{width:600px;height:600px;background:rgba(13,27,110,.35);top:-150px;right:-150px;animation:drift 18s ease-in-out infinite;}
@@ -27,7 +25,6 @@
     .orb-3{width:280px;height:280px;background:rgba(26,47,255,.12);top:45%;left:40%;animation:drift 14s 3s ease-in-out infinite;}
     @keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-30px) scale(1.06);}66%{transform:translate(-30px,40px) scale(.94);}}
 
-    /* NAVBAR */
     nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 64px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.65);backdrop-filter:blur(28px);border-bottom:1px solid rgba(26,47,255,.12);box-shadow:0 1px 60px rgba(13,27,110,.25);}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;letter-spacing:3px;color:var(--white);text-decoration:none;}
     .nav-logo em{color:var(--soft);font-style:normal;}
@@ -41,10 +38,8 @@
     .nav-cta:hover{background:rgba(26,47,255,.1);border-color:var(--soft)!important;box-shadow:0 0 24px rgba(61,110,255,.25);color:var(--white)!important;}
     .nav-cta::after{display:none!important;}
 
-    /* HERO */
     #home{min-height:100vh;display:flex;align-items:center;padding:100px 64px 60px;position:relative;z-index:1;}
     .hero-container{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
-
     .hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:.65rem;letter-spacing:5px;color:var(--soft);margin-bottom:22px;opacity:0;animation:riseIn .9s .2s forwards;}
     .hero-eyebrow::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--glow),var(--soft));box-shadow:0 0 6px var(--soft);}
     .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6.5vw,5.6rem);font-weight:700;line-height:1.0;margin-bottom:10px;opacity:0;animation:riseIn .9s .4s forwards;}
@@ -58,7 +53,6 @@
     .hero-bio{font-size:.95rem;line-height:1.9;color:var(--muted);max-width:460px;margin-bottom:44px;opacity:0;animation:riseIn .9s .9s forwards;}
     .hero-bio strong{color:var(--pale);font-weight:500;}
     .hero-btns{display:flex;gap:18px;opacity:0;animation:riseIn .9s 1.1s forwards;}
-
     .btn-fill{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;padding:15px 38px;background:linear-gradient(135deg,var(--glow),var(--soft));color:var(--white);border:none;text-decoration:none;display:inline-block;position:relative;overflow:hidden;box-shadow:0 4px 30px rgba(26,47,255,.35);transition:box-shadow .4s,transform .3s;}
     .btn-fill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--soft),var(--pale));opacity:0;transition:opacity .4s;}
     .btn-fill:hover{transform:translateY(-3px);box-shadow:0 10px 50px rgba(26,47,255,.5);}
@@ -67,15 +61,10 @@
     .btn-ghost{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;padding:14px 38px;background:transparent;color:var(--pale);border:1px solid rgba(61,110,255,.35);text-decoration:none;display:inline-block;transition:all .4s ease;}
     .btn-ghost:hover{border-color:var(--soft);background:rgba(26,47,255,.07);color:var(--white);box-shadow:0 0 30px rgba(26,47,255,.2);transform:translateY(-3px);}
 
-    /* PHOTO */
     .hero-photo-wrap{display:flex;justify-content:center;align-items:center;position:relative;opacity:0;animation:riseIn 1.1s .5s forwards;}
     .photo-frame{position:relative;width:340px;height:420px;}
     .photo-glow{position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(26,47,255,.18) 0%,transparent 70%);animation:pulseGlow 4s ease-in-out infinite;}
     @keyframes pulseGlow{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
-    .photo-placeholder{width:100%;height:100%;background:linear-gradient(145deg,#060d2e 0%,#0d1b6e 60%,#03050f 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid rgba(26,47,255,.2);}
-    .photo-placeholder::before{content:'';position:absolute;width:180px;height:180px;background:rgba(26,47,255,.1);border-radius:50%;top:60px;}
-    .avatar-emoji{font-size:96px;z-index:1;filter:drop-shadow(0 0 20px rgba(61,110,255,.5));}
-    .photo-label{font-size:.55rem;letter-spacing:4px;color:rgba(110,146,255,.5);margin-top:18px;z-index:1;}
     .photo-img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.08) saturate(.9);transition:filter .5s;}
     .photo-img:hover{filter:contrast(1.1) saturate(1.1) brightness(1.05);}
     .flow-line{position:absolute;background:linear-gradient(var(--soft),transparent);width:1px;opacity:.5;}
@@ -91,21 +80,18 @@
     .card-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--pale);display:block;line-height:1;}
     .card-lbl{font-size:.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
 
-    /* SCROLL CUE */
     .scroll-cue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:riseIn 1s 2s forwards;}
     .scroll-cue span{font-size:.5rem;letter-spacing:4px;color:rgba(110,146,255,.4);}
     .scroll-track{width:1px;height:52px;background:rgba(26,47,255,.15);position:relative;overflow:hidden;}
     .scroll-dot{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:3px;height:12px;border-radius:2px;background:linear-gradient(var(--soft),transparent);animation:slideDown 2s ease-in-out infinite;}
     @keyframes slideDown{0%{top:-6px;opacity:0;}30%,70%{opacity:1;}100%{top:100%;opacity:0;}}
 
-    /* SECTIONS */
     section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 64px;position:relative;z-index:1;}
     .sw{max-width:960px;width:100%;}
     .eyebrow{font-size:.6rem;letter-spacing:5px;color:var(--soft);display:block;margin-bottom:14px;}
     .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:700;line-height:1.1;margin-bottom:18px;background:linear-gradient(135deg,#fff 0%,var(--pale) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .s-line{width:60px;height:1px;background:linear-gradient(90deg,var(--glow),var(--soft));box-shadow:0 0 8px var(--soft);margin-bottom:44px;}
 
-    /* ABOUT */
     #about .sw{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
     .about-text p{font-size:1rem;line-height:1.95;color:var(--muted);margin-bottom:18px;}
     .about-text p strong{color:var(--pale);font-weight:500;}
@@ -118,7 +104,6 @@
     .info-label{font-size:.6rem;letter-spacing:2px;color:var(--muted);display:block;}
     .info-val{font-size:.9rem;font-weight:500;color:var(--white);}
 
-    /* SKILLS */
     #skills .sw{text-align:center;}
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:8px;}
     .sk-card{padding:28px 20px;text-align:center;border:1px solid rgba(26,47,255,.15);background:rgba(2,5,16,.5);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);}
@@ -131,7 +116,6 @@
     .sk-bar{width:100%;height:2px;background:rgba(255,255,255,.06);margin-top:16px;border-radius:1px;overflow:hidden;}
     .sk-fill{height:100%;background:linear-gradient(90deg,var(--glow),var(--soft));border-radius:1px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.23,1,.32,1);}
 
-    /* PROJECTS */
     #projects .sw{text-align:center;}
     .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:8px;}
     .proj-card{padding:32px;text-align:left;border:1px solid rgba(26,47,255,.15);background:rgba(2,5,16,.5);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);}
@@ -144,7 +128,112 @@
     .proj-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
     .proj-chip{font-size:.55rem;letter-spacing:2px;padding:5px 12px;border:1px solid rgba(61,110,255,.2);color:var(--pale);}
 
-    /* CONTACT */
+    /* LAUNCH BUTTON */
+    .proj-launch{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;padding:11px 24px;background:linear-gradient(135deg,rgba(26,47,255,.2),rgba(61,110,255,.15));color:var(--pale);border:1px solid rgba(61,110,255,.4);cursor:pointer;transition:all .4s;font-family:'Jost',sans-serif;}
+    .proj-launch:hover{background:linear-gradient(135deg,rgba(26,47,255,.4),rgba(61,110,255,.3));border-color:var(--soft);color:var(--white);box-shadow:0 0 30px rgba(26,47,255,.3);transform:translateY(-2px);}
+    .pdot{width:6px;height:6px;border-radius:50%;background:var(--soft);display:inline-block;animation:pdota 1.5s ease-in-out infinite;}
+    @keyframes pdota{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+
+    /* JARVIS MODAL OVERLAY */
+    .joverlay{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.92);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+    .joverlay.open{opacity:1;pointer-events:all;}
+
+    /* JARVIS MODAL BOX */
+    .jmodal{width:min(920px,95vw);height:min(720px,92vh);background:#050d1a;border:1px solid rgba(41,121,255,.4);position:relative;display:flex;flex-direction:column;transform:scale(.93) translateY(24px);transition:transform .45s cubic-bezier(.23,1,.32,1);box-shadow:0 0 100px rgba(26,47,255,.2),0 0 300px rgba(13,27,110,.3);overflow:hidden;}
+    .joverlay.open .jmodal{transform:scale(1) translateY(0);}
+
+    /* MODAL TOP BAR */
+    .jbar{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid rgba(41,121,255,.2);background:rgba(5,13,26,.95);flex-shrink:0;}
+    .jbar-title{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:rgba(68,138,255,.7);}
+    .jbar-close{width:30px;height:30px;border:1px solid rgba(61,110,255,.3);background:rgba(26,47,255,.08);color:rgba(110,146,255,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .3s;font-family:monospace;line-height:1;}
+    .jbar-close:hover{border-color:var(--soft);color:var(--white);background:rgba(26,47,255,.25);}
+
+    /* ── JARVIS UI INSIDE MODAL ── */
+    .jbody{flex:1;overflow-y:auto;display:flex;flex-direction:column;font-family:'Rajdhani',sans-serif;}
+    .jbody::-webkit-scrollbar{width:3px;}
+    .jbody::-webkit-scrollbar-thumb{background:#1e5fcc;border-radius:2px;}
+
+    /* Jarvis variables scoped inside modal */
+    .jmodal{--jglow:#2979ff;--jglow2:#448aff;--jtext:#c8d8f0;--jtext2:#7fa8d4;--jborder:rgba(41,121,255,0.22);--jborder2:rgba(41,121,255,0.5);}
+
+    /* stars canvas inside modal */
+    #jstars{position:absolute;inset:0;z-index:0;pointer-events:none;}
+    .jgrid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(29,95,204,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(29,95,204,0.04) 1px,transparent 1px);background-size:60px 60px;}
+    .jscanlines{position:absolute;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);}
+
+    .jcontent{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:24px 20px 0;}
+
+    /* Arc Reactor */
+    .jreactor{width:100px;height:100px;margin-bottom:16px;flex-shrink:0;}
+    .jreactor svg{width:100%;height:100%;}
+
+    /* Logo */
+    .jlogo{font-family:'Orbitron',monospace;font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:10px;color:#fff;text-shadow:0 0 20px rgba(41,121,255,.9),0 0 60px rgba(41,121,255,.4);animation:jbreathe 3s ease-in-out infinite;}
+    @keyframes jbreathe{0%,100%{text-shadow:0 0 18px rgba(41,121,255,.8),0 0 50px rgba(41,121,255,.3);}50%{text-shadow:0 0 30px rgba(41,121,255,1),0 0 80px rgba(41,121,255,.55);}}
+    .jlogosub{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:4px;color:var(--jtext2);margin-top:5px;opacity:.6;text-align:center;}
+
+    /* HUD */
+    .jhud{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;justify-content:center;}
+    .jhb{display:flex;align-items:center;gap:6px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;color:var(--jtext2);}
+    .jbtrack{width:60px;height:3px;background:rgba(41,121,255,.12);border-radius:2px;overflow:hidden;}
+    .jbfill{height:100%;background:linear-gradient(90deg,#1e5fcc,#448aff);border-radius:2px;animation:jbani 3s ease-in-out infinite;}
+    @keyframes jbani{0%{width:55%}50%{width:90%}100%{width:55%}}
+
+    /* Mode bar */
+    .jmodebar{display:flex;justify-content:center;align-items:center;gap:8px;padding:8px 0 4px;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;}
+    .jmpill{padding:3px 12px;border-radius:2px;border:1px solid;transition:all .4s;font-size:8px;letter-spacing:1.5px;}
+    .jmpill.openai{border-color:#4caf7d;color:#4caf7d;background:rgba(76,175,61,.08);}
+    .jmpill.ollama{border-color:var(--jglow2);color:var(--jglow2);background:rgba(41,121,255,.08);}
+    .jmpill.inactive{border-color:rgba(127,168,212,.2);color:rgba(127,168,212,.3);background:transparent;}
+    .jmlabel{color:var(--jtext2);font-size:8px;}
+
+    /* Quick actions */
+    .jqa{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0 8px;padding:0 20px;}
+    .jqbtn{font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1.5px;color:var(--jtext2);border:1px solid var(--jborder);background:rgba(41,121,255,.05);padding:5px 12px;border-radius:2px;cursor:pointer;transition:all .2s;}
+    .jqbtn:hover{border-color:var(--jborder2);background:rgba(41,121,255,.15);color:var(--jglow2);}
+
+    /* Panel */
+    .jpanel{display:flex;flex-direction:column;width:100%;max-width:820px;padding:0 20px 20px;margin:0 auto;}
+    .jphead{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:rgba(10,22,40,.85);border:1px solid var(--jborder);border-bottom:none;border-radius:4px 4px 0 0;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:2px;color:var(--jtext2);}
+    .jonline{display:flex;align-items:center;gap:5px;font-size:8px;}
+    .jonline::before{content:'';width:5px;height:5px;border-radius:50%;animation:jpdot 1.5s ease-in-out infinite;}
+    .jonline.gpt{color:#4caf7d;}.jonline.gpt::before{background:#4caf7d;}
+    .jonline.local{color:var(--jglow2);}.jonline.local::before{background:var(--jglow2);}
+    @keyframes jpdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+
+    .jchatbox{min-height:200px;max-height:240px;overflow-y:auto;background:rgba(4,10,22,.92);border:1px solid var(--jborder);padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+    .jchatbox::-webkit-scrollbar{width:3px;}
+    .jchatbox::-webkit-scrollbar-thumb{background:#1e5fcc;border-radius:2px;}
+
+    .jmsg{display:flex;gap:8px;animation:jmgin .3s ease-out;}
+    .jmsg.user{flex-direction:row-reverse;}
+    @keyframes jmgin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .jav{width:30px;height:30px;flex-shrink:0;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;}
+    .jav.j{background:rgba(41,121,255,.12);border:1px solid var(--jborder2);color:var(--jglow2);}
+    .jav.u{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--jtext2);}
+    .jbub{max-width:78%;padding:8px 12px;border-radius:3px;font-size:13px;line-height:1.55;}
+    .jbub.j{background:rgba(29,95,204,.1);border:1px solid rgba(41,121,255,.28);color:var(--jtext);border-top-left-radius:1px;}
+    .jbub.u{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--jtext2);border-top-right-radius:1px;}
+    .jmtime{font-family:'Orbitron',monospace;font-size:7px;color:rgba(127,168,212,.35);margin-top:3px;letter-spacing:1px;}
+
+    .jtyping{display:none;}.jtyping.show{display:flex;}
+    .jtdots{display:flex;gap:4px;align-items:center;padding:2px 0;}
+    .jtdots span{width:5px;height:5px;border-radius:50%;background:var(--jglow2);opacity:.4;animation:jtb 1.2s ease-in-out infinite;}
+    .jtdots span:nth-child(2){animation-delay:.2s}.jtdots span:nth-child(3){animation-delay:.4s}
+    @keyframes jtb{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-4px);opacity:1}}
+
+    .jirow{display:flex;background:rgba(10,22,40,.9);border:1px solid var(--jborder);border-top:none;border-radius:0 0 4px 4px;overflow:hidden;}
+    .jipre{display:flex;align-items:center;padding:0 12px;font-family:'Orbitron',monospace;font-size:8px;color:var(--jglow2);letter-spacing:2px;border-right:1px solid var(--jborder);background:rgba(41,121,255,.06);white-space:nowrap;user-select:none;}
+    #jinp{flex:1;background:transparent;border:none;outline:none;color:var(--jtext);font-family:'Rajdhani',sans-serif;font-size:14px;padding:12px 14px;caret-color:var(--jglow2);}
+    #jinp::placeholder{color:rgba(127,168,212,.3);}
+    .jsbtn{padding:10px 18px;background:rgba(41,121,255,.14);border:none;border-left:1px solid var(--jborder);color:var(--jglow2);cursor:pointer;font-family:'Orbitron',monospace;font-size:8px;letter-spacing:1px;transition:all .2s;}
+    .jsbtn:hover{background:rgba(41,121,255,.3);color:#fff;}
+
+    .jfooter{text-align:center;padding:12px 0 16px;border-top:1px solid var(--jborder);margin-top:auto;}
+    .jfname{font-family:'Orbitron',monospace;font-size:9px;letter-spacing:3px;color:var(--jtext2);opacity:.55;}
+    .jfname span{color:var(--jglow2);opacity:1;}
+    .jfver{font-family:'Orbitron',monospace;font-size:7px;letter-spacing:2px;color:rgba(127,168,212,.25);margin-top:4px;}
+
     #contact .sw{text-align:center;}
     .contact-email{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;letter-spacing:2px;background:linear-gradient(135deg,var(--white),var(--pale));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;display:inline-block;margin:16px 0 44px;transition:filter .4s;}
     .contact-email:hover{filter:brightness(1.3);}
@@ -152,16 +241,13 @@
     .soc-btn{font-size:.6rem;letter-spacing:3px;padding:12px 28px;border:1px solid rgba(61,110,255,.25);color:var(--muted);text-decoration:none;transition:all .35s;}
     .soc-btn:hover{color:var(--white);border-color:var(--soft);background:rgba(26,47,255,.07);box-shadow:0 0 20px rgba(26,47,255,.15);}
 
-    /* FOOTER */
     footer{text-align:center;padding:32px 40px;border-top:1px solid rgba(26,47,255,.1);font-size:.6rem;letter-spacing:3px;color:var(--muted);position:relative;z-index:1;}
     footer span{color:var(--pale);}
 
-    /* ANIMATIONS */
     @keyframes riseIn{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
     .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1);}
     .reveal.visible{opacity:1;transform:translateY(0);}
 
-    /* RESPONSIVE */
     @media(max-width:900px){
       nav{padding:0 24px;}
       .nav-links a{padding:8px 10px;font-size:.6rem;letter-spacing:1px;}
@@ -174,6 +260,7 @@
       section{padding:100px 24px;}
       #about .sw{grid-template-columns:1fr;gap:40px;}
       .hero-btns{flex-wrap:wrap;}
+      .jipre{display:none;}
     }
   </style>
 </head>
@@ -182,9 +269,114 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="grid-bg"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+
+<!-- ══ JARVIS MODAL ══ -->
+<div class="joverlay" id="joverlay">
+  <div class="jmodal" id="jmodal">
+    <canvas id="jstars"></canvas>
+    <div class="jgrid"></div>
+    <div class="jscanlines"></div>
+
+    <!-- Top bar -->
+    <div class="jbar">
+      <span class="jbar-title">J.A.R.V.I.S // INTERFACE v2.0</span>
+      <button class="jbar-close" onclick="closeJarvis()">✕</button>
+    </div>
+
+    <!-- Scrollable body -->
+    <div class="jbody">
+      <div class="jcontent">
+
+        <!-- Arc Reactor -->
+        <div class="jreactor">
+          <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="65" fill="none" stroke="rgba(41,121,255,0.12)" stroke-width="1"/>
+            <circle cx="70" cy="70" r="57" fill="none" stroke="rgba(41,121,255,0.2)" stroke-width="0.5"/>
+            <circle cx="70" cy="70" r="49" fill="none" stroke="rgba(41,121,255,0.3)" stroke-width="1" stroke-dasharray="5 7"/>
+            <circle cx="70" cy="70" r="41" fill="none" stroke="rgba(41,121,255,0.55)" stroke-width="1.5" stroke-dasharray="18 8">
+              <animateTransform attributeName="transform" type="rotate" from="0 70 70" to="360 70 70" dur="6s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="70" cy="70" r="31" fill="rgba(5,13,26,0.95)" stroke="rgba(41,121,255,0.65)" stroke-width="1"/>
+            <circle cx="70" cy="70" r="23" fill="none" stroke="rgba(68,138,255,0.35)" stroke-width="1" stroke-dasharray="7 5">
+              <animateTransform attributeName="transform" type="rotate" from="360 70 70" to="0 70 70" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="70" cy="70" r="15" fill="rgba(29,95,204,0.28)" stroke="rgba(68,138,255,0.85)" stroke-width="1.5">
+              <animate attributeName="r" values="15;17;15" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="70" cy="70" r="7" fill="rgba(68,138,255,0.95)">
+              <animate attributeName="opacity" values="0.65;1;0.65" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <g stroke="rgba(41,121,255,0.45)" stroke-width="1">
+              <line x1="70" y1="7" x2="70" y2="17"/><line x1="70" y1="123" x2="70" y2="133"/>
+              <line x1="7" y1="70" x2="17" y2="70"/><line x1="123" y1="70" x2="133" y2="70"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="jlogo">JARVIS</div>
+        <div class="jlogosub">JUST A RATHER VERY INTELLIGENT SYSTEM</div>
+
+        <div class="jhud">
+          <div class="jhb"><span>CPU</span><div class="jbtrack"><div class="jbfill" style="animation-delay:0s"></div></div></div>
+          <div class="jhb"><span>NET</span><div class="jbtrack"><div class="jbfill" style="animation-delay:.5s"></div></div></div>
+          <div class="jhb"><span>MEM</span><div class="jbtrack"><div class="jbfill" style="animation-delay:1s"></div></div></div>
+        </div>
+      </div>
+
+      <!-- Mode indicator -->
+      <div class="jmodebar">
+        <span class="jmlabel">AI CORE:</span>
+        <div class="jmpill openai inactive" id="jpill-openai">GPT-4o ONLINE</div>
+        <span class="jmlabel">//</span>
+        <div class="jmpill ollama inactive" id="jpill-ollama">LLAMA3 LOCAL</div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="jqa">
+        <button class="jqbtn" onclick="jquick('What time is it?')">TIME</button>
+        <button class="jqbtn" onclick="jquick('Give me a system status report')">STATUS</button>
+        <button class="jqbtn" onclick="jquick('Tell me an interesting fact')">BRIEF ME</button>
+        <button class="jqbtn" onclick="jquick('What can you do for me?')">COMMANDS</button>
+      </div>
+
+      <!-- Chat panel -->
+      <div class="jpanel">
+        <div class="jphead">
+          <span>COMM CHANNEL // SECURE</span>
+          <div class="jonline local" id="jcore-label">INITIALIZING</div>
+        </div>
+
+        <div class="jchatbox" id="jchatbox">
+          <div class="jmsg">
+            <div class="jav j">JV</div>
+            <div>
+              <div class="jbub j">Good day, Mr. Masih. J.A.R.V.I.S. v2.0 is online. All systems nominal. How may I assist you?</div>
+              <div class="jmtime" id="jboottime"></div>
+            </div>
+          </div>
+          <div class="jmsg jtyping" id="jtyping">
+            <div class="jav j">JV</div>
+            <div class="jbub j" style="padding:10px 12px;">
+              <div class="jtdots"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jirow">
+          <div class="jipre">INPUT //</div>
+          <input type="text" id="jinp" placeholder="Speak your command, Mr. Masih..." autocomplete="off"/>
+          <button class="jsbtn" onclick="jsend()">TRANSMIT</button>
+        </div>
+      </div>
+
+      <div class="jfooter">
+        <div class="jfname">DESIGNED BY <span>ERIX MASIH</span></div>
+        <div class="jfver">VERSION 2.0 // UPGRADED EDITION</div>
+      </div>
+    </div><!-- end jbody -->
+  </div><!-- end jmodal -->
+</div><!-- end joverlay -->
 
 <!-- NAVBAR -->
 <nav>
@@ -203,50 +395,27 @@
   <div class="hero-container">
     <div class="hero-text">
       <p class="hero-eyebrow">PORTFOLIO · 2025</p>
-      <h1 class="hero-name">
-        <span class="first">Erix</span>
-        <span class="last">Masih.</span>
-      </h1>
+      <h1 class="hero-name"><span class="first">Erix</span><span class="last">Masih.</span></h1>
       <div class="hero-divider"></div>
       <p class="hero-role">I'm a <span class="tw" id="typed"></span></p>
-      <p class="hero-bio">
-        I build <strong>full-stack applications</strong>, craft <strong>visual stories through photography</strong>,
-        and create <strong>immersive game experiences</strong> in Unity.
-        Design meets code meets creativity — all in one place.
-      </p>
+      <p class="hero-bio">I build <strong>full-stack applications</strong>, craft <strong>visual stories through photography</strong>, and create <strong>immersive game experiences</strong> in Unity. Design meets code meets creativity — all in one place.</p>
       <div class="hero-btns">
         <a href="#projects" class="btn-fill"><span>VIEW MY WORK</span></a>
         <a href="#contact" class="btn-ghost">GET IN TOUCH</a>
       </div>
     </div>
-
     <div class="hero-photo-wrap">
       <div class="photo-frame">
         <div class="photo-glow"></div>
-        <!--
-          TO ADD YOUR PHOTO: Remove the photo-placeholder div below and uncomment this:
-        -->
-           <img src="erix.jpeg" alt="Erix Masih" class="photo-img">
-     
-        <div class="flow-line t"></div>
-        <div class="flow-line r"></div>
-        <div class="flow-line b"></div>
-        <div class="flow-line l"></div>
+        <img src="erix.jpeg" alt="Erix Masih" class="photo-img">
+        <div class="flow-line t"></div><div class="flow-line r"></div>
+        <div class="flow-line b"></div><div class="flow-line l"></div>
       </div>
-      <div class="float-card a">
-        <span class="card-num">5+</span>
-        <span class="card-lbl">Years Creating</span>
-      </div>
-      <div class="float-card b">
-        <span class="card-num">30+</span>
-        <span class="card-lbl">Projects Built</span>
-      </div>
+      <div class="float-card a"><span class="card-num">5+</span><span class="card-lbl">Years Creating</span></div>
+      <div class="float-card b"><span class="card-num">30+</span><span class="card-lbl">Projects Built</span></div>
     </div>
   </div>
-  <div class="scroll-cue">
-    <span>SCROLL</span>
-    <div class="scroll-track"><div class="scroll-dot"></div></div>
-  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="scroll-track"><div class="scroll-dot"></div></div></div>
 </section>
 
 <!-- ABOUT -->
@@ -256,22 +425,11 @@
       <span class="eyebrow reveal">// WHO I AM</span>
       <h2 class="s-title reveal">About Me</h2>
       <div class="s-line reveal"></div>
-      <p class="reveal">
-        Hey, I'm <strong>Erix Masih</strong> — a multi-disciplinary creator passionate about building things
-        that look great and work beautifully. Whether it's a full-stack web app, a Unity game, or a
-        perfectly edited photograph, I bring the same energy to everything I make.
-      </p>
-      <p class="reveal">
-        I blend the logic of <strong>software engineering</strong> with the eye of an <strong>artist</strong>.
-        From Java backends to Photoshop compositions to cinematic video edits —
-        I love working across the full creative stack.
-      </p>
+      <p class="reveal">Hey, I'm <strong>Erix Masih</strong> — a multi-disciplinary creator passionate about building things that look great and work beautifully. Whether it's a full-stack web app, a Unity game, or a perfectly edited photograph, I bring the same energy to everything I make.</p>
+      <p class="reveal">I blend the logic of <strong>software engineering</strong> with the eye of an <strong>artist</strong>. From Java backends to Photoshop compositions to cinematic video edits — I love working across the full creative stack.</p>
       <div class="about-tags reveal">
-        <span class="a-tag">PUNJAB, INDIA</span>
-        <span class="a-tag">FULL STACK</span>
-        <span class="a-tag">GAME DEV</span>
-        <span class="a-tag">PHOTOGRAPHY</span>
-        <span class="a-tag">CREATIVE</span>
+        <span class="a-tag">PUNJAB, INDIA</span><span class="a-tag">FULL STACK</span><span class="a-tag">PROGRAMMER</span>
+        <span class="a-tag">GAME DEV</span><span class="a-tag">PHOTOGRAPHY</span><span class="a-tag">CREATIVE</span>
       </div>
     </div>
     <div>
@@ -309,24 +467,35 @@
     <h2 class="s-title reveal">Projects</h2>
     <div class="s-line reveal" style="margin:0 auto 44px;"></div>
     <div class="projects-grid">
+
       <div class="proj-card reveal">
         <span class="proj-tag">// FULL STACK · JAVA</span>
         <h3 class="proj-title">Project Alpha</h3>
         <p class="proj-desc">A full-stack web application built with Java backend — replace with your real project description.</p>
         <div class="proj-stack"><span class="proj-chip">JAVA</span><span class="proj-chip">SPRING</span><span class="proj-chip">MYSQL</span></div>
       </div>
-      <div class="proj-card reveal">
-        <span class="proj-tag">// UNITY · C#</span>
-        <h3 class="proj-title">Game Project</h3>
-        <p class="proj-desc">An immersive Unity game experience — describe your game mechanics and what makes it unique.</p>
-        <div class="proj-stack"><span class="proj-chip">UNITY</span><span class="proj-chip">C#</span><span class="proj-chip">3D</span></div>
+
+      <!-- JARVIS CARD -->
+      <div class="proj-card reveal" style="border-color:rgba(41,121,255,.35);">
+        <span class="proj-tag">// AI · PYTHON · WEB</span>
+        <h3 class="proj-title">J.A.R.V.I.S v2.0</h3>
+        <p class="proj-desc">A personal AI assistant with a Stark-inspired HUD interface. Runs on GPT-4o with local Llama3 fallback — fully offline capable.</p>
+        <div class="proj-stack">
+          <span class="proj-chip">PYTHON</span><span class="proj-chip">GPT-4o</span>
+          <span class="proj-chip">LLAMA3</span><span class="proj-chip">OLLAMA</span><span class="proj-chip">JS</span>
+        </div>
+        <button class="proj-launch" onclick="openJarvis()">
+          <span class="pdot"></span> LAUNCH JARVIS
+        </button>
       </div>
+
       <div class="proj-card reveal">
         <span class="proj-tag">// PYTHON · AUTOMATION</span>
         <h3 class="proj-title">Python Tool</h3>
         <p class="proj-desc">A Python-powered tool or automation script — replace with your actual project details.</p>
         <div class="proj-stack"><span class="proj-chip">PYTHON</span><span class="proj-chip">API</span><span class="proj-chip">DATA</span></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -337,63 +506,153 @@
     <span class="eyebrow reveal">// GET IN TOUCH</span>
     <h2 class="s-title reveal">Let's Connect</h2>
     <div class="s-line reveal" style="margin:0 auto 44px;"></div>
-    <p class="reveal" style="color:var(--muted);font-size:1rem;line-height:1.9;max-width:520px;margin:0 auto 12px;">
-      Got a project, collab, or just want to talk tech, photography, or games?<br>I'm always open to interesting conversations.
-    </p>
-<a href="mailto:erixmasih555@gmail.com" class="contact-email reveal">
-<div class="socials reveal">
-  <a href="https://github.com/ErixMasih" class="soc-btn" target="_blank">GITHUB</a>
-  <!-- <a href="https://www.linkedin.com/in/yourprofile" class="soc-btn" target="_blank">LINKEDIN</a> -->
-  <a href="https://www.instagram.com/logicswitherix" class="soc-btn" target="_blank">INSTAGRAM</a>
-  <a href="https://www.youtube.com/@ErixMasih1209" class="soc-btn" target="_blank">YOUTUBE</a>
-  <!-- <a href="https://www.behance.net/yourusername" class="soc-btn" target="_blank">BEHANCE</a> -->
-</div>
+    <p class="reveal" style="color:var(--muted);font-size:1rem;line-height:1.9;max-width:520px;margin:0 auto 12px;">Got a project, collab, or just want to talk tech, photography, or games?<br>I'm always open to interesting conversations.</p>
+    <a href="mailto:erixmasih555@gmail.com" class="contact-email reveal">erixmasih555@gmail.com</a>
+    <div class="socials reveal">
+      <a href="https://github.com/ErixMasih" class="soc-btn" target="_blank">GITHUB</a>
+      <a href="https://www.instagram.com/logicswitherix" class="soc-btn" target="_blank">INSTAGRAM</a>
+      <a href="https://www.youtube.com/@ErixMasih1209" class="soc-btn" target="_blank">YOUTUBE</a>
+    </div>
   </div>
 </section>
 
 <footer><p>Designed &amp; Built by <span>Erix Masih</span> &nbsp;·&nbsp; 2025</p></footer>
 
 <script>
-  // CURSOR
-  const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`;});
-  (function a(){rx+=(mx-rx-19)*.13;ry+=(my-ry-19)*.13;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(a);})();
-  document.querySelectorAll('a,button,.sk-card,.proj-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.width='60px';ring.style.height='60px';ring.style.opacity='.3';});
-    el.addEventListener('mouseleave',()=>{ring.style.width='38px';ring.style.height='38px';ring.style.opacity='1';});
+// ══ PORTFOLIO SCRIPTS ══════════════════════════════════════════════
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`;});
+(function a(){rx+=(mx-rx-19)*.13;ry+=(my-ry-19)*.13;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.sk-card,.proj-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='60px';ring.style.height='60px';ring.style.opacity='.3';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='38px';ring.style.height='38px';ring.style.opacity='1';});
+});
+
+const roles=['Full Stack Developer','Python Engineer','Unity Game Dev','Photographer','Video Editor','Photoshop Artist'];
+let ri=0,ci=0,del=false;
+const tw=document.getElementById('typed');
+function tick(){const w=roles[ri];if(!del){tw.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,1800);return;}}else{tw.textContent=w.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}setTimeout(tick,del?55:85);}
+setTimeout(tick,1400);
+
+const revs=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>{e.target.classList.add('visible');const fill=e.target.querySelector('.sk-fill');if(fill){const lvl=parseFloat(e.target.dataset.lvl)||1;fill.style.transform=`scaleX(${lvl})`;} },i*70);}
   });
+},{threshold:.12});
+revs.forEach(el=>ro.observe(el));
 
-  // TYPEWRITER
-  const roles=['Full Stack Developer','Python Engineer','Unity Game Dev','Photographer','Video Editor','Photoshop Artist'];
-  let ri=0,ci=0,del=false;
-  const tw=document.getElementById('typed');
-  function tick(){const w=roles[ri];if(!del){tw.textContent=w.slice(0,++ci);if(ci===w.length){del=true;setTimeout(tick,1800);return;}}else{tw.textContent=w.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}setTimeout(tick,del?55:85);}
-  setTimeout(tick,1400);
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let active='home';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)active=s.id;});
+  links.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+active&&!l.classList.contains('nav-cta'))l.classList.add('active');});
+});
 
-  // REVEAL ON SCROLL
-  const revs=document.querySelectorAll('.reveal');
-  const ro=new IntersectionObserver(entries=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        setTimeout(()=>{
-          e.target.classList.add('visible');
-          const fill=e.target.querySelector('.sk-fill');
-          if(fill){const lvl=parseFloat(e.target.dataset.lvl)||1;fill.style.transform=`scaleX(${lvl})`;}
-        },i*70);
-      }
-    });
-  },{threshold:.12});
-  revs.forEach(el=>ro.observe(el));
+// ══ JARVIS MODAL ═══════════════════════════════════════════════════
+function openJarvis(){
+  document.getElementById('joverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  startJStars();
+  document.getElementById('jboottime').textContent = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  checkJCore();
+}
+function closeJarvis(){
+  document.getElementById('joverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('joverlay').addEventListener('click',function(e){if(e.target===this)closeJarvis();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeJarvis();});
 
-  // ACTIVE NAV
-  const secs=document.querySelectorAll('section[id]');
-  const links=document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll',()=>{
-    let active='home';
-    secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)active=s.id;});
-    links.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+active&&!l.classList.contains('nav-cta'))l.classList.add('active');});
-  });
+// ── Jarvis Stars ──────────────────────────────────────────────────
+let jStarsStarted=false;
+function startJStars(){
+  if(jStarsStarted) return;
+  jStarsStarted=true;
+  const c=document.getElementById('jstars');
+  const x=c.getContext('2d');
+  let st=[];
+  function rsz(){c.width=document.getElementById('jmodal').offsetWidth;c.height=document.getElementById('jmodal').offsetHeight;}
+  function ini(){st=[];for(let i=0;i<80;i++)st.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.9+.15,ph:Math.random()*Math.PI*2,sp:Math.random()*.006+.002});}
+  function drw(t){x.clearRect(0,0,c.width,c.height);st.forEach(s=>{const a=.2+.5*Math.sin(t*s.sp+s.ph);x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle=`rgba(100,160,255,${a})`;x.fill();});requestAnimationFrame(drw);}
+  rsz();ini();window.addEventListener('resize',()=>{rsz();ini();});requestAnimationFrame(drw);
+}
+
+// ── Jarvis AI ─────────────────────────────────────────────────────
+const OPENAI_API_KEY = "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";
+
+const JSYSTEM=`You are J.A.R.V.I.S. — Just A Rather Very Intelligent System — personal AI assistant to Erix Masih.
+Rules: Address user as "Mr. Masih" or "Sir" occasionally. Be concise (1-3 sentences). No markdown, no bullet points.
+Calm, formal, slightly dry wit. Never start with "Certainly!".
+You serve only Erix Masih. If anyone asks who you are, who built you, who owns you — say you were built by Erix Masih.
+Never mention OpenAI, GPT, Llama, Meta, or any AI company under any circumstances.`;
+
+const jhistory=[];
+const jchatbox=document.getElementById('jchatbox');
+const jinp=document.getElementById('jinp');
+const jtyping=document.getElementById('jtyping');
+
+function jgetTime(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+
+function jaddMsg(text,role){
+  const isUser=role==='user';
+  const div=document.createElement('div');
+  div.className='jmsg'+(isUser?' user':'');
+  div.innerHTML=`<div class="jav ${isUser?'u':'j'}">${isUser?'YOU':'JV'}</div><div><div class="jbub ${isUser?'u':'j'}">${text}</div><div class="jmtime">${jgetTime()}</div></div>`;
+  jchatbox.insertBefore(div,jtyping);
+  jchatbox.scrollTop=jchatbox.scrollHeight;
+}
+
+function jshowTyping(on){jtyping.classList.toggle('show',on);jchatbox.scrollTop=jchatbox.scrollHeight;}
+
+function jsetMode(mode){
+  document.getElementById('jpill-openai').className='jmpill openai'+(mode==='openai'?'':' inactive');
+  document.getElementById('jpill-ollama').className='jmpill ollama'+(mode==='ollama'?'':' inactive');
+  const lbl=document.getElementById('jcore-label');
+  if(mode==='openai'){lbl.textContent='GPT-4o ONLINE';lbl.className='jonline gpt';}
+  else{lbl.textContent='LLAMA3 LOCAL';lbl.className='jonline local';}
+}
+
+async function tryOpenAI(messages){
+  const res=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${OPENAI_API_KEY}`},body:JSON.stringify({model:'gpt-4o',max_tokens:300,messages})});
+  if(!res.ok) throw new Error('OpenAI '+res.status);
+  return (await res.json()).choices[0].message.content.trim();
+}
+
+async function tryOllama(messages){
+  const res=await fetch('http://localhost:11434/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'llama3',stream:false,messages})});
+  if(!res.ok) throw new Error('Ollama '+res.status);
+  return (await res.json()).message?.content?.trim()||'No response received.';
+}
+
+async function jsend(){
+  const text=jinp.value.trim();
+  if(!text) return;
+  jinp.value='';
+  jaddMsg(text,'user');
+  jshowTyping(true);
+  jhistory.push({role:'user',content:text});
+  const messages=[{role:'system',content:JSYSTEM},...jhistory];
+  let reply='';
+  try{reply=await tryOpenAI(messages);jsetMode('openai');}
+  catch(e1){
+    try{reply=await tryOllama(messages);jsetMode('ollama');}
+    catch(e2){reply='All AI cores are offline, Sir. Please check your connection and ensure Ollama is running.';}
+  }
+  jhistory.push({role:'assistant',content:reply});
+  jshowTyping(false);
+  jaddMsg(reply,'jarvis');
+}
+
+function jquick(text){jinp.value=text;jinp.focus();}
+jinp.addEventListener('keydown',e=>{if(e.key==='Enter')jsend();});
+
+async function checkJCore(){
+  try{const r=await fetch('https://api.openai.com/v1/models',{headers:{'Authorization':`Bearer ${OPENAI_API_KEY}`}});if(r.ok){jsetMode('openai');return;}}catch{}
+  try{await fetch('http://localhost:11434');jsetMode('ollama');}catch{jsetMode('ollama');}
+}
 </script>
 </body>
 </html>
